@@ -5,3 +5,11 @@ Material for **TD2 -- Branching, merging, conflicts, rebase, stash**
 
 The project computes simple revenue figures from `data/sales.csv`.
 Three feature branches are waiting to be merged. Read the handout.
+
+## How to run
+
+```bash
+python analysis.py
+```
+
+Prints the total revenue and the revenue per month.
