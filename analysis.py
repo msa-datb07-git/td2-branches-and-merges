@@ -10,11 +10,20 @@ def load_sales(path):
         return list(csv.DictReader(f))
 
 
-def total_revenue(rows):
-    """Sum quantity * unit_price over all rows."""
+def total_revenue(rows, region=None):
+    """Sum quantity * unit_price, optionally restricted to one region."""
+    if region is not None:
+        rows = [r for r in rows if r["region"] == region]
     if not rows:
         return 0.0
     return sum(float(r["quantity"]) * float(r["unit_price"]) for r in rows)
+
+
+def average_order_value(rows):
+    """Average revenue per row (one row = one order)."""
+    if not rows:
+        return 0.0
+    return total_revenue(rows) / len(rows)
 
 
 def monthly_revenue(rows):
