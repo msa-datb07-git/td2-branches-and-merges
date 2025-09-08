@@ -1,6 +1,7 @@
 """Sales analysis helpers."""
 
 import csv
+from collections import defaultdict
 
 
 def load_sales(path):
@@ -14,3 +15,12 @@ def total_revenue(rows):
     if not rows:
         return 0.0
     return sum(float(r["quantity"]) * float(r["unit_price"]) for r in rows)
+
+
+def monthly_revenue(rows):
+    """Return a dict {YYYY-MM: revenue}."""
+    totals = defaultdict(float)
+    for r in rows:
+        month = r["date"][:7]
+        totals[month] += float(r["quantity"]) * float(r["unit_price"])
+    return dict(sorted(totals.items()))
