@@ -26,6 +26,14 @@ def monthly_revenue(rows):
     return dict(sorted(totals.items()))
 
 
+def revenue_by_region(rows):
+    """Return a dict {region: revenue}."""
+    totals = defaultdict(float)
+    for r in rows:
+        totals[r["region"]] += float(r["quantity"]) * float(r["unit_price"])
+    return dict(sorted(totals.items()))
+
+
 if __name__ == "__main__":
     rows = load_sales("data/sales.csv")
     print(f"Total revenue: {total_revenue(rows):.2f}")
