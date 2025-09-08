@@ -24,3 +24,10 @@ def monthly_revenue(rows):
         month = r["date"][:7]
         totals[month] += float(r["quantity"]) * float(r["unit_price"])
     return dict(sorted(totals.items()))
+
+
+if __name__ == "__main__":
+    rows = load_sales("data/sales.csv")
+    print(f"Total revenue: {total_revenue(rows):.2f}")
+    for month, value in monthly_revenue(rows).items():
+        print(f"{month}: {value:.2f}")
