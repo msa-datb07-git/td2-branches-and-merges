@@ -3,7 +3,9 @@
 from analysis import load_sales, revenue_by_region
 
 
-def text_bar_chart(values, width=40):
+def text_bar_chart(values, width=40, title="Revenue by region"):
+    print(title)
+    print("-" * len(title))
     biggest = max(values.values())
     for label, value in values.items():
         bar = "#" * int(width * value / biggest)
